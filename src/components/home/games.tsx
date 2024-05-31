@@ -13,7 +13,7 @@ export default function Games() {
         </span>
       </div>
       <div className="flex gap-4 w-full justify-around">
-        {["Word Puzzle", "Scrabble", "Word Connect", "Riddles"].map(
+        {["Scrabble", "Word Connect", "Riddles", "Word Puzzle"].map(
           (item, index) => (
             <GameCard name={item} key={index} />
           )

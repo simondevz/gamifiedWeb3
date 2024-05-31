@@ -1,4 +1,6 @@
 import { PrimaryButton } from "../utils/buttons";
+import achiementNftImg from "../../assets/achievement_nft.jpg";
+import powerUpNft from "../../assets/2x_nft.jpg";
 
 export default function Explore() {
   return (
@@ -17,8 +19,18 @@ export default function Explore() {
         </div>
       </div>
       <div className="flex">
-        <div className="flex w-52 h-60 bg-ash rounded-lg border-dashed border-2 border-black relative top-20 rotate-[-5.89deg]"></div>
-        <div className="flex w-64 h-[18rem] bg-ash rounded-lg border-dashed border-2 border-black rotate-[17.77deg]"></div>
+        <div
+          style={{
+            backgroundImage: `url(${achiementNftImg})`,
+          }}
+          className="flex w-52 h-60 bg-ash bg-center bg-cover rounded-lg border-dashed border-2 border-black relative top-20 rotate-[-5.89deg]"
+        ></div>
+        <div
+          style={{
+            backgroundImage: `url(${powerUpNft})`,
+          }}
+          className="flex w-64 h-[18rem] bg-ash bg-center bg-cover rounded-lg border-dashed border-2 border-black rotate-[17.77deg]"
+        ></div>
       </div>
     </div>
   );

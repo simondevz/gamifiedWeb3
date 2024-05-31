@@ -23,7 +23,7 @@ export default function Timer() {
   const timeStart = searchParams.get("puzzleTime");
   const { time, pause, status, start, advanceTime } = useTimer({
     autostart: true,
-    initialTime: Number(timeStart?.split(" ")[0]),
+    initialTime: Number(timeStart?.split(" ")[0]) * 60,
     timerType: "DECREMENTAL",
     endTime: 0,
     onTimeOver: () => {

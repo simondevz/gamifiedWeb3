@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
+import scrabbleImg from "../../assets/scrabble.jpeg";
+import wordConnect from "../../assets/word connect.png";
+import riddlesImg from "../../assets/word riddles.jpeg";
+import crosswordPuzzleImg from "../../assets/crossword puzzle.png";
 
 export default function GameCard({ name }: { name: string }) {
+  const bgImg = name.toLowerCase().includes("scrabble")
+    ? scrabbleImg
+    : name.toLowerCase().includes("word connect")
+    ? wordConnect
+    : name.toLowerCase().includes("riddle")
+    ? riddlesImg
+    : crosswordPuzzleImg;
+
   return (
     <div className="flex flex-col gap-2">
       <div
@@ -16,7 +28,12 @@ export default function GameCard({ name }: { name: string }) {
       >
         <div className="flex p-4 bg-white ">
           {/* to hold image */}
-          <div className="bg-black w-52 h-60"></div>
+          <div
+            style={{
+              backgroundImage: `url(${bgImg})`,
+            }}
+            className="bg-cover bg-norepeat bg-center w-52 h-60"
+          ></div>
         </div>
       </div>
       <div className="flex w-full">
