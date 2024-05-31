@@ -37,7 +37,14 @@ export default function GameCard({ name }: { name: string }) {
         </div>
       </div>
       <div className="flex w-full">
-        <Link to={`/games?game=${name}`} className="flex mx-auto font-bold">
+        <Link
+          to={
+            name.toLowerCase().includes("scrabble")
+              ? `/games?game=${name}`
+              : "#"
+          }
+          className="flex mx-auto font-bold"
+        >
           {name}
         </Link>
       </div>

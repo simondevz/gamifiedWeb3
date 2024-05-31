@@ -10,7 +10,7 @@ import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
 
 import { WagmiProvider } from "wagmi";
-import { arbitrum, mainnet } from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 
 // 1. Your WalletConnect Cloud project ID
 const projectId = process.env.WEB3MODAL_PROJECTID as string;
@@ -23,7 +23,7 @@ const metadata = {
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 
-const chains = [mainnet, arbitrum] as const;
+const chains = [sepolia] as const;
 const config = defaultWagmiConfig({
   chains,
   projectId,
