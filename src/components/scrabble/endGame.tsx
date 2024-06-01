@@ -17,12 +17,14 @@ export default function EndgameBtn() {
   }, [dispatch, gameEnded, navigate]);
 
   useEffect(() => {
-    if (endTimeLeft) {
-      dispatch(updateEndTimeLeft(endTimeLeft));
-      dispatch(endTimeNeeded(false));
-      navigate("/scrabble/gameover");
-    }
-  });
+    (async () => {
+      if (endTimeLeft) {
+        dispatch(updateEndTimeLeft(endTimeLeft));
+        dispatch(endTimeNeeded(false));
+        navigate("/scrabble/gameover");
+      }
+    })();
+  }, [dispatch, endTimeLeft, navigate]);
 
   return (
     <button

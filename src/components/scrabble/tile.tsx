@@ -74,7 +74,7 @@ export default function Tile({ tile }: { tile: number }) {
           setWasDragged(true);
           const selectedElement = document.elementFromPoint(
             this.pointerEvent.pageX,
-            this.pointerEvent.pageY - snapRadius / 2
+            this.pointerEvent.pageY - snapRadius * 3
           );
 
           if (selectedElement?.classList.contains("scrabble_square")) {

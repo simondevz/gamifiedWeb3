@@ -36,6 +36,7 @@ export interface AppState {
   needEndTime: boolean;
   endTimeLeft: string;
   connectWallet: boolean;
+  nftbaseurl: string;
 }
 
 const initialState: AppState = {
@@ -68,6 +69,7 @@ const initialState: AppState = {
   needEndTime: false,
   endTimeLeft: "",
   connectWallet: false,
+  nftbaseurl: "https://gamifiedweb3api.onrender.com/nft-metadata",
 };
 
 export const appSlice = createSlice({

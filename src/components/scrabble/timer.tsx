@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTimer } from "use-timer";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -14,6 +14,9 @@ export default function Timer() {
   const pauseTimer = useAppSelector((state) => state.app.pauseTimer);
   const addTime = useAppSelector((state) => state.app.addTime);
   const deduceTime = useAppSelector((state) => state.app.deductTime);
+
+  const deduceTimeRef = useRef(deduceTime);
+  const addTimeRef = useRef(addTime);
 
   const [timeUpdated, settimeUpdated] = useState(false);
   const dispatch = useAppDispatch();
@@ -31,6 +34,12 @@ export default function Timer() {
     },
   });
 
+  // Helps prevent infinte rerender
+  useLayoutEffect(() => {
+    deduceTimeRef.current = deduceTime;
+    addTimeRef.current = addTime;
+  }, [addTime, deduceTime]);
+
   // If needEndTime is true update the end time
   useEffect(() => {
     if (needEndTime)
@@ -43,24 +52,24 @@ export default function Timer() {
 
   // Basically pauses time during submition
   useEffect(() => {
-    if (pauseTimer) console.log(pause());
+    if (pauseTimer) pause();
     if (status === "PAUSED" && !pauseTimer) start();
   }, [pause, pauseTimer, start, status]);
 
   // Handles time updates
   useEffect(() => {
-    if (addTime) {
-      advanceTime(-addTime);
+    if (addTimeRef.current) {
+      advanceTime(-addTimeRef.current);
       pause();
       settimeUpdated(true);
     }
 
-    if (deduceTime) {
-      advanceTime(deduceTime);
+    if (deduceTimeRef.current) {
+      advanceTime(deduceTimeRef.current);
       pause();
       settimeUpdated(true);
     }
-  }, [addTime, advanceTime, deduceTime, pause]);
+  }, [advanceTime, pause]);
 
   // After time has been updated make it zero on the global state
   useEffect(() => {
