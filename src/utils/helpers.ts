@@ -166,3 +166,7 @@ export function formWord(
   if (toMultiplyBy2) wordValue = wordValue * toMultiplyBy2 * 2;
   return { [word]: wordValue };
 }
+
+export const formatAddress = (address: `0x${string}`) => {
+  return _.truncate(address, { length: 9 }) + address.slice(-4);
+};

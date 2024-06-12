@@ -7,10 +7,10 @@ import logo from "../../assets/logo.png";
 
 export default function Footer() {
   return (
-    <footer className="flex justify-between bg-white_ish px-10 pb-32 pt-20">
+    <footer className="flex max-sm:flex-col max-sm:gap-8 max-sm:pt-8 justify-between bg-white_ish px-10 pb-32 pt-20 max-md:text-[0.75rem] max-lg:text-[0.875rem]">
       <div>
-        <img className="w-72" src={logo} />
-        <span className="text-ash_2 font-semibold text-[0.875rem]">
+        <img className="max-lg:w-60 max-md:w-52 w-72" src={logo} />
+        <span className="text-ash_2 font-semibold text-[0.875rem] max-lg:text-[0.75rem] max-md:text-[0.5rem]">
           &copy; 2024 Learn3Play. All Rights Reserved.
         </span>
       </div>
@@ -48,7 +48,7 @@ export default function Footer() {
           <li>support</li>
         </ul>
       </div>
-      <div className="flex flex-col gap-2 pr-20">
+      <div className="flex flex-col gap-2 max-lg:pr-6 max-md:pr-2 pr-20">
         <div className="flex gap-3">
           <button>
             <GrInstagram />

@@ -14,40 +14,41 @@ export default function GameCard({ name }: { name: string }) {
     : crosswordPuzzleImg;
 
   return (
-    <div className="flex flex-col gap-2">
-      <div
-        style={{
-          borderTop: "3px solid green",
-          borderBottom: "3px solid green",
-          borderImage:
-            "linear-gradient( 90deg, #0019FF, #0019FF 1%, #0019FF 0 15%, #7482FF 0 85%, #0019FF 0 100%) 10",
-          backgroundImage:
-            "linear-gradient( 180deg, #0019FF, #0019FF 1%, #0019FF 0 10%, #7482FF 0 90%, #0019FF 0 100%)",
-        }}
-        className="px-[3px]"
+    <div className="flex flex-col gap-8 max-lg:gap-2 scale-90 -mx-6 max-lg:-mx-4">
+      <Link
+        to={
+          name.toLowerCase().includes("scrabble") ? `/games?game=${name}` : "#"
+        }
+        className="cursor-pointer"
       >
-        <div className="flex p-4 bg-white ">
-          {/* to hold image */}
-          <div
-            style={{
-              backgroundImage: `url(${bgImg})`,
-            }}
-            className="bg-cover bg-norepeat bg-center w-52 h-60"
-          ></div>
-        </div>
-      </div>
-      <div className="flex w-full">
-        <Link
-          to={
-            name.toLowerCase().includes("scrabble")
-              ? `/games?game=${name}`
-              : "#"
-          }
-          className="flex mx-auto font-bold"
+        <div
+          style={{
+            borderTop: "3px solid green",
+            borderBottom: "3px solid green",
+            borderImage:
+              "linear-gradient( 90deg, #0019FF, #0019FF 1%, #0019FF 0 15%, #7482FF 0 85%, #0019FF 0 100%) 10",
+            backgroundImage:
+              "linear-gradient( 180deg, #0019FF, #0019FF 1%, #0019FF 0 10%, #7482FF 0 90%, #0019FF 0 100%)",
+          }}
+          className="px-[3px]"
         >
-          {name}
-        </Link>
-      </div>
+          <div className="flex p-4 bg-white ">
+            {/* to hold image */}
+            <div
+              style={{
+                backgroundImage: `url(${bgImg})`,
+              }}
+              className="bg-cover bg-norepeat bg-center w-52 h-60"
+            ></div>
+          </div>
+        </div>
+        <div className="flex flex-col w-full">
+          <span className="flex mx-auto font-bold">{name}</span>
+          {!name.toLowerCase().includes("scrabble") && (
+            <span className="flex mx-auto font-bold">Coming Soon</span>
+          )}
+        </div>
+      </Link>
     </div>
   );
 }

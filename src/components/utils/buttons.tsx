@@ -2,14 +2,16 @@ export const PrimaryButton = ({
   text,
   onclick,
   serif,
+  className,
 }: {
   text: string;
   onclick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   serif?: boolean;
+  className?: string;
 }) => {
   return (
     <button
-      className="flex relative text-white -skew-x-[30deg]"
+      className={"flex relative text-white -skew-x-[30deg] " + className}
       onClick={onclick}
     >
       <div className="">
