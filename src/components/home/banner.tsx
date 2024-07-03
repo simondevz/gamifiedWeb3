@@ -14,7 +14,7 @@ export default function Banner() {
       className="flex w-full scale-x-[-1] bg-no-repeat bg-cover"
     >
       <div className="scale-x-[-1] flex w-full flex-col">
-        <NavBar />
+        <NavBar home />
         <div className="flex px-8 py-2">
           <div className="flex flex-col text-pale_blue max-xs:my-10 max-sm:my-16 max-md:my-24 my-32">
             <span className="flex font-jomo max-md:text-base max-sm:text-[0.875rem] max-xs:text-[0.75rem] text-[1.2rem] uppercase">

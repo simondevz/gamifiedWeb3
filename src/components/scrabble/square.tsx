@@ -54,12 +54,13 @@ export default function Square({
               ? "bg-dw "
               : premium === "TW"
               ? "bg-tw "
-              : "") + "flex w-8 h-8 rounded-md scrabble_square"
+              : "") +
+            "flex w-8 max-xs:w-6 max-xs:h-6 max-xs:text-[0.5rem] h-8 rounded-md scrabble_square"
           }
         >
           {isStar(row, col) ? (
             <MdOutlineStarPurple500
-              size={"1.75rem"}
+              size={"1.25rem"}
               color="#fff"
               className="mx-auto my-auto scrabble_square_child"
             />

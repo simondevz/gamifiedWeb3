@@ -134,19 +134,19 @@ export default function Scrabble() {
       className="flex w-screen bg-cover bg-center bg-no-repeat scale-x-[-1]"
     >
       <div className="flex justify-center w-full h-full bg-white/40 scale-x-[-1]">
-        <div className="flex my-auto flex-col bg-sky_blue">
+        <div className="flex max-xs:w-full my-auto flex-col bg-sky_blue max-sm:scale-75 max-xs:scale-[1]">
           <div className="flex flex-col gap-4 relative w-full bg-primary py-4 px-6 rounded-b-lg">
             <div className="flex w-full flex-row-reverse justify-between">
               <Timer />
               <EndgameBtn />
-              <div className="text-white flex gap-4 flex-col">
-                <div className="font-semibold flex gap-4">
+              <div className="text-white flex gap-4 max-xs:gap-2 flex-col">
+                <div className="font-semibold flex gap-4 max-xs:gap-2 max-xs:text-[0.75rem]">
                   <span>Tiles in bag:</span>
                   <span className="w-24 text-center rounded-md bg-deep_blue">
                     {bag.length}
                   </span>
                 </div>
-                <div className="font-semibold flex gap-4">
+                <div className="font-semibold flex gap-4 max-xs:gap-2 max-xs:text-[0.75rem]">
                   <span>Score</span>
                   <span className="w-24 text-center rounded-md bg-deep_blue">
                     {score}
@@ -155,7 +155,7 @@ export default function Scrabble() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center bg-sky_blue px-6 pt-12 pb-8">
+          <div className="flex flex-col justify-center bg-sky_blue px-6 max-xs:px-4 pt-12 pb-8 max-xs:pb-6">
             <Board />
           </div>
           <div className="flex w-full bg-primary py-4 rounded-t-lg">

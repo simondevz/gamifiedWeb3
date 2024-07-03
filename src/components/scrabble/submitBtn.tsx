@@ -492,7 +492,7 @@ export default function SubmitButton() {
     <button
       disabled={tilesPlayed.length > 0 ? false : true}
       onClick={handleClick}
-      className="flex font-semibold px-2 h-8 rounded-full disabled:bg-light_purple bg-purple text-white justify-center"
+      className="flex font-semibold px-2 h-8 max-xs:h-6 max-xs:text-[0.75rem] rounded-full disabled:bg-light_purple bg-purple text-white justify-center"
     >
       <span className="my-auto">Submit</span>
     </button>

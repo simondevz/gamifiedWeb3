@@ -41,7 +41,7 @@ export default function Board() {
   const Loading = () => <div>Loading...</div>;
 
   return (
-    <div className="grid grid-cols-15 gap-[0.2rem] ">
+    <div className="grid grid-cols-15 gap-[0.2rem] max-xs:gap-[0.1rem] ">
       {boardLoaded ? (
         board.map((row, rowIndex) =>
           row.map((col, colIndex) => (

@@ -25,17 +25,24 @@ export default function Rack() {
   }, [rackTiles]);
 
   return (
-    <div className="flex gap-2 mx-auto">
-      {formattedArray.map((value, index) =>
-        isNumeric(value) ? (
-          <Tile key={index} tile={value!} />
-        ) : (
-          <span className="flex w-8 h-8 rounded-md bg-white" key={index}></span>
-        )
-      )}
-      <PassButton />
-      <ExchangeButton />
-      <SubmitButton />
+    <div className="flex max-xs:flex-col-reverse gap-2 mx-auto">
+      <div className="flex gap-2">
+        {formattedArray.map((value, index) =>
+          isNumeric(value) ? (
+            <Tile key={index} tile={value!} />
+          ) : (
+            <span
+              className="flex w-8 max-xs:w-6 max-xs:h-6 max-xs:text-[0.5rem] h-8 rounded-md bg-white"
+              key={index}
+            ></span>
+          )
+        )}
+      </div>
+      <div className="flex gap-2 max-xs:w-full max-xs:justify-end">
+        <PassButton />
+        <ExchangeButton />
+        <SubmitButton />
+      </div>
     </div>
   );
 }

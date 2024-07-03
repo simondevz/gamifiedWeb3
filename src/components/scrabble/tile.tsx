@@ -312,12 +312,12 @@ export default function Tile({ tile }: { tile: number }) {
   return (
     <div
       onClick={revertTileState}
-      className="cursor-pointer flex w-8 h-8 bg-white scrabble_tiles_container rounded-md"
+      className="cursor-pointer flex w-8 max-xs:w-6 max-xs:h-6 max-xs:text-[0.5rem] h-8 bg-white scrabble_tiles_container rounded-md"
     >
       <div
         ref={!isDraggable ? tileElement : null}
         className={
-          "scrabble_tiles flex relative w-8 h-8 rounded-md bg-tile_color text-white justify-center " +
+          "scrabble_tiles flex relative w-8 max-xs:w-6 max-xs:h-6 max-xs:text-[0.5rem] h-8 rounded-md bg-tile_color text-white justify-center " +
           (selected ? " outline" : "")
         }
       >
@@ -326,10 +326,10 @@ export default function Tile({ tile }: { tile: number }) {
             <></>
           ) : (
             <>
-              <span className="uppercase text-[1.5rem] font-bold my-auto leading-3">
+              <span className="uppercase text-[1.5rem] max-xs:text-[0.75rem] font-bold my-auto leading-3">
                 {tiles[tile].letter}
               </span>
-              <span className="absolute bottom-0 right-0 text-[0.5rem] p-[0.1rem]">
+              <span className="absolute bottom-0 right-0 text-[0.5rem] max-xs:text-[0.25rem] p-[0.1rem]">
                 {tiles[tile].value}
               </span>
             </>

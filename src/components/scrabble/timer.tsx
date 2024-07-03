@@ -81,7 +81,7 @@ export default function Timer() {
   }, [addTime, deduceTime, dispatch, timeUpdated]);
 
   return (
-    <div className="w-20 h-20 rounded-full bg-white absolute flex top-14 right-8 justify-center">
+    <div className="w-20 h-20 rounded-full bg-white absolute flex top-14 max-xs:top-10 right-8 max-xs:right-4 justify-center max-xs:scale-75">
       <div className="flex w-16 h-16 rounded-full bg-primary my-auto text-[0.75rem] font-semibold text-white justify-center">
         <div className="flex flex-col my-auto">
           <span className="text-center w-full">Time Left</span>

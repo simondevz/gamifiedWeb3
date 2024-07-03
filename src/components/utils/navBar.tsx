@@ -27,9 +27,7 @@ export default function NavBar({
   return (
     <nav
       className={
-        (home
-          ? " "
-          : "drop-shadow-lg bg-white max-md:bg-red-500 max-sm:bg-blue-500 max-xs:bg-green-500 max-2xs:bg-yellow-500 max-lg:bg-cyan-950") +
+        (home ? " " : "drop-shadow-lg bg-white") +
         " flex justify-between px-8 max-md:px-4 py-4 "
       }
     >

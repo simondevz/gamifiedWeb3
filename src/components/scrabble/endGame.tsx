@@ -29,9 +29,11 @@ export default function EndgameBtn() {
   return (
     <button
       onClick={() => dispatch(endgame())}
-      className="flex w-24 py-[0.2rem] rounded-full bg-purple place-self-start"
+      className="flex w-24 max-xs:w-20 py-[0.2rem] rounded-full bg-purple place-self-start"
     >
-      <span className="mx-auto text-white ">End Game</span>
+      <span className="mx-auto text-white max-xs:text-[0.75rem] ">
+        End Game
+      </span>
     </button>
   );
 }
