@@ -72,9 +72,11 @@ export default function Tile({ tile }: { tile: number }) {
         onDrag: function () {
           setDragEnd(false);
           setWasDragged(true);
+          const cord_X = this.pointerEvent?.changedTouches?.[0]?.pageX;
+          const cord_Y = this.pointerEvent?.changedTouches?.[0]?.pageY;
           const selectedElement = document.elementFromPoint(
-            this.pointerEvent.pageX,
-            this.pointerEvent.pageY - snapRadius * 3
+            this.pointerEvent?.pageX || cord_X,
+            (this.pointerEvent?.pageY || cord_Y) - snapRadius * 3
           );
 
           if (selectedElement?.classList.contains("scrabble_square")) {
