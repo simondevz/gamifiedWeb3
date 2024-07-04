@@ -30,7 +30,7 @@ export default function Timer() {
     timerType: "DECREMENTAL",
     endTime: 0,
     onTimeOver: () => {
-      dispatch(endgame());
+      dispatch(endgame(true));
     },
   });
 

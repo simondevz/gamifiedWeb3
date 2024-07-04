@@ -79,8 +79,8 @@ export const appSlice = createSlice({
     markFirstMove: (state) => {
       state.firstMove = false;
     },
-    endgame: (state) => {
-      state.gameEnded = true;
+    endgame: (state, action: PayloadAction<boolean>) => {
+      state.gameEnded = action.payload;
     },
     endTimeNeeded: (state, action: PayloadAction<boolean>) => {
       state.needEndTime = action.payload;

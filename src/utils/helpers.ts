@@ -6,6 +6,7 @@ import {
   TilePlayedType,
   TileType,
 } from "../types/scrabble/types";
+import Swal from "sweetalert2";
 
 export const findClosestObject = (
   array: SquarePointsType[],
@@ -110,7 +111,7 @@ export function checkTileAfter(
 }
 
 // Checks along the other axis (i.e non-main) for the leters of the word
-export function formWord(
+export async function formWord(
   firstTile: TilePlayedType,
   lastTile: TilePlayedType,
   board: BoardType,
@@ -142,7 +143,28 @@ export function formWord(
     let multipler = 1;
 
     if (isNumeric(board[col][row]?.tile)) {
-      letters = [...letters, tiles[board[col][row]?.tile as number].letter];
+      let letter = tiles[board[col][row]?.tile as number].letter;
+      if (letter === "_") {
+        const { value: userChoise } = await Swal.fire({
+          title: "Enter a letter (A-Z) or number (0-9) of your choice ",
+          input: "text",
+          inputLabel: "Your Letter",
+          inputValidator: (value) => {
+            console.log(value);
+
+            if (!value) {
+              return "You need to write something!";
+            }
+            if (value.length > 1) return "You can only write one letter";
+            if (!/^[a-z0-9]+$/i.test(value.toLocaleLowerCase()))
+              return "Must be A-Z or 0-9";
+          },
+        });
+        if (userChoise) {
+          letter = userChoise;
+        }
+      }
+      letters = [...letters, letter];
       console.log(letters);
 
       if (board[col][row].premium === "DL") multipler = 2;

@@ -9,15 +9,19 @@ import { useWriteContract, useAccount, useWatchContractEvent } from "wagmi";
 import ClaimTokenAbi from "../components/abis/ClaimToken.json";
 import AchievmentAbi from "../components/abis/Achievment.json";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { endgame } from "../redux/slice";
 
 export default function GameOver() {
   const location = useLocation();
   const game = location.pathname.includes("scrabble") ? "scrabble" : ""; // Todo if Introducing other games add conditions for their name
   const score = useAppSelector((state) => state.app.score);
+  const gameEnded = useAppSelector((state) => state.app.gameEnded);
 
   const navigate = useNavigate();
   const [newHighscore, setNewHighScore] = useState(false);
   const { writeContractAsync } = useWriteContract();
+  const dispatch = useDispatch();
 
   const { address } = useAccount();
   const [tokenClaimed, setTokenClaimed] = useState(false);
@@ -28,6 +32,10 @@ export default function GameOver() {
   const [achievmentClaimText, setAchievmentClaimText] = useState(
     "Mint Achievment Nft"
   );
+
+  useEffect(() => {
+    if (gameEnded) dispatch(endgame(false));
+  });
 
   useWatchContractEvent({
     address: process.env.ACHIEVMENT_NFT_ADDRESS as `0x${string}`,
@@ -127,7 +135,7 @@ export default function GameOver() {
       }}
       className="flex w-screen  bg-cover bg-center bg-no-repeat scale-x-[-1]"
     >
-      <div className="flex flex-col gap-16 p-12 w-full h-screen bg-white/40 scale-x-[-1]">
+      <div className="flex flex-col max-xs:text-[0.875rem] max-2xs:text-[0.75rem] gap-16 p-12 w-full h-screen bg-white/40 scale-x-[-1]">
         <div className="flex justify-center w-full">
           <div className="flex w-full justify-between ">
             <div className="flex w-full">
@@ -140,7 +148,7 @@ export default function GameOver() {
                 </span>
               </button>
             </div>
-            <h1 className="bg-gradient-to-b from-primary via-primary to-white inline-block text-transparent bg-clip-text -my-4 font-racing text-[3rem] uppercase">
+            <h1 className="bg-gradient-to-b from-primary via-primary to-white inline-block text-transparent bg-clip-text -my-4 font-racing max-xs:text-[2rem] text-[3rem] max-2xs:text-[1rem] uppercase">
               {game.toString()}
             </h1>
             <span className="flex w-full"></span>
@@ -148,11 +156,11 @@ export default function GameOver() {
         </div>
         <div className="flex flex-col w-full gap-8">
           <div className="flex w-full justify-center ">
-            <span className="bg-gradient-to-b from-primary via-primary to-white inline-block text-transparent bg-clip-text -my-4 font-racing text-[2rem] capitalize">
+            <span className="bg-gradient-to-b from-primary via-primary to-white inline-block text-transparent bg-clip-text -my-4 font-racing text-[2rem] max-xs:text-[1rem] max-2xs:text-[0.875rem] capitalize">
               Score: {score}
             </span>
           </div>
-          <span className="flex w-full justify-center ">
+          <span className="flex w-full justify-center max-2xs:scale-75 ">
             <span
               style={{
                 backgroundImage: `url(${profilePic})`,
@@ -177,7 +185,7 @@ export default function GameOver() {
               <button
                 onClick={claimTokens}
                 disabled={tokenClaimed}
-                className="flex px-6 py-2 bg-primary rounded-full text-white font-inter disabled:bg-ash-700"
+                className="flex px-6 max-xs:px-4 py-2 bg-primary rounded-full text-white font-inter disabled:bg-ash-700"
               >
                 <span>{tokenClaimeText}</span>
               </button>
@@ -187,7 +195,7 @@ export default function GameOver() {
               <button
                 onClick={mintAchiement}
                 disabled={achievmentClaimed}
-                className="flex px-6 py-2 bg-primary rounded-full text-white font-inter"
+                className="flex px-6 max-xs:px-4 py-2 bg-primary rounded-full text-white font-inter"
               >
                 <span>{achievmentClaimText}</span>
               </button>

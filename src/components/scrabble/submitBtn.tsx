@@ -257,21 +257,26 @@ export default function SubmitButton() {
      */
 
     await delay(250);
+    const firstTile: TilePlayedType = checkTileBefore(
+      sortedTiles[0],
+      mainAxis,
+      board
+    );
+
+    const lastTile: TilePlayedType = checkTileAfter(
+      sortedTiles[sortedTiles.length - 1],
+      mainAxis,
+      board
+    );
+
+    let newWord: {
+      [x: string]: number;
+    };
+    if (Number(firstTile.tile) !== Number(lastTile.tile))
+      newWord = await formWord(firstTile, lastTile, board, tiles);
+
     return new Promise((resolve) => {
-      const firstTile: TilePlayedType = checkTileBefore(
-        sortedTiles[0],
-        mainAxis,
-        board
-      );
-
-      const lastTile: TilePlayedType = checkTileAfter(
-        sortedTiles[sortedTiles.length - 1],
-        mainAxis,
-        board
-      );
-
       if (Number(firstTile.tile) === Number(lastTile.tile)) resolve([]);
-      const newWord = formWord(firstTile, lastTile, board, tiles);
       resolve([newWord]);
     });
   };
@@ -285,27 +290,24 @@ export default function SubmitButton() {
      * Gets the remaining words formed
      */
 
+    for (let index = 0; index < sortedTiles.length; index++) {
+      // For each case i want the opposite of the main axiz taken as the main axis
+      const antiMainAxis: MainAxisType =
+        mainAxis === "horizontal" ? "vertical" : "horizontal";
+
+      const firstTile = checkTileBefore(
+        sortedTiles[index],
+        antiMainAxis,
+        board
+      );
+      const lastTile = checkTileAfter(sortedTiles[index], antiMainAxis, board);
+
+      if (Number(firstTile.tile) === Number(lastTile.tile)) continue;
+      const newWord = await formWord(firstTile, lastTile, board, tiles);
+      words = [...words, newWord];
+    }
+
     return new Promise((resolve) => {
-      for (let index = 0; index < sortedTiles.length; index++) {
-        // For each case i want the opposite of the main axiz taken as the main axis
-        const antiMainAxis: MainAxisType =
-          mainAxis === "horizontal" ? "vertical" : "horizontal";
-
-        const firstTile = checkTileBefore(
-          sortedTiles[index],
-          antiMainAxis,
-          board
-        );
-        const lastTile = checkTileAfter(
-          sortedTiles[index],
-          antiMainAxis,
-          board
-        );
-
-        if (Number(firstTile.tile) === Number(lastTile.tile)) continue;
-        const newWord = formWord(firstTile, lastTile, board, tiles);
-        words = [...words, newWord];
-      }
       resolve(words);
     });
   };
